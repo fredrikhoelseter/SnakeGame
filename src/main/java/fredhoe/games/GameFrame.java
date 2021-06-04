@@ -1,21 +1,29 @@
 package fredhoe.games;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 public class GameFrame {
 
-    private static final int FRAME_WIDTH = 720;
-    private static final int FRAME_HEIGHT = 744;
-    private int[] x = new int[30];
-    private int[] y = new int[30];
-    private int square = 24;
+    private final int squaresX = 30;
+    private final int squaresY = 30;
+    private final int square = 24;
+
+    private final int FRAME_WIDTH = squaresX * square;
+    private final int FRAME_HEIGHT = squaresY * square + square;
+    private int[] x = new int[squaresX];
+    private int[] y = new int[squaresY];
+
 
     private JFrame frame;
     private GameController controller;
 
     public GameFrame() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < squaresX; i++) {
             x[i] = i * square;
+
+        }
+        for (int i = 0; i < squaresY; i++) {
             y[i] = i * square;
         }
     }
@@ -27,7 +35,7 @@ public class GameFrame {
         frame.setResizable(false);
 
         controller = new GameController();
-        frame.add(controller);
+        frame.add(controller, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
@@ -43,4 +51,20 @@ public class GameFrame {
         return square;
     }
 
-}
+    public int getSquaresX() {
+        return squaresX;
+    }
+
+    public int getSquaresY() {
+        return squaresY;
+    }
+
+    public int getFRAME_WIDTH() {
+        return FRAME_WIDTH;
+    }
+
+    public int getFRAME_HEIGHT() {
+        return FRAME_HEIGHT;
+    }
+
+ }
